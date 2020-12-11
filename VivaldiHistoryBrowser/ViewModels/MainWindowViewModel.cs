@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using VivaldiHistoryBrowser.Models;
 
 namespace VivaldiHistoryBrowser.ViewModels
 {
@@ -15,5 +16,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         {
 
         }
+
+        public DBHelper DatabaseHelper { get; private set; } = new DBHelper();
     }
 }
