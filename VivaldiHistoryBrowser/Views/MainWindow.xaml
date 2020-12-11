@@ -4,7 +4,62 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="basicUIBackgroundColor" Color="DimGray" />
+    </Window.Resources>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+
+        <Menu Grid.Row="0"
+              Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
+              >
+
+            <MenuItem Header="ファイル"
+                      Foreground="White"
+                      />
+        </Menu>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
+                    >
+
+            <TextBox Text="textBlock"
+                     Width="150"
+                     Foreground="White"
+                     Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
+                     Margin="0,4,0,0"
+                     />
+
+        </StackPanel>
+
+        <ListView Grid.Row="2"
+                  Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
+                  BorderThickness="0,1"
+                  >
+            
+        </ListView>
+
+        <StatusBar Grid.Row="3"
+                   Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
+                   >
+            <TextBlock Text="ステータスバー"
+                       Foreground="White"
+                       />
+        </StatusBar>
+
     </Grid>
 </Window>
