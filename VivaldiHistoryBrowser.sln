@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaldiHistoryBrowser", "VivaldiHistoryBrowser\VivaldiHistoryBrowser.csproj", "{C56199EC-E9A2-4E06-AECB-4543817656B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaldiHistoryBrowserTests", "VivaldiHistoryBrowserTests\VivaldiHistoryBrowserTests.csproj", "{13F729A1-1B93-4E02-962E-A864E22FA416}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C56199EC-E9A2-4E06-AECB-4543817656B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C56199EC-E9A2-4E06-AECB-4543817656B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C56199EC-E9A2-4E06-AECB-4543817656B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F729A1-1B93-4E02-962E-A864E22FA416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F729A1-1B93-4E02-962E-A864E22FA416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F729A1-1B93-4E02-962E-A864E22FA416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F729A1-1B93-4E02-962E-A864E22FA416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
