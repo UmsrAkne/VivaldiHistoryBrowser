@@ -7,6 +7,7 @@
 
     <Window.Resources>
         <SolidColorBrush x:Key="basicUIBackgroundColor" Color="DimGray" />
+        <SolidColorBrush x:Key="basicFontColor" Color="White" />
     </Window.Resources>
 
     <Grid>
@@ -51,7 +52,48 @@
                   Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                   BorderThickness="0,1"
                   >
-            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,0,0,0.5"
+                            Padding="0,0,0,3"
+                            >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="400"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding VisitDateTime}"
+                                       Foreground="{StaticResource basicFontColor}"
+                                       Grid.Column="0"
+                                       />
+
+                            <TextBlock Text="{Binding PageTitle}"
+                                       Foreground="{StaticResource basicFontColor}"
+                                       Grid.Column="1"
+                                       />
+
+                            <TextBlock Text="{Binding URL}"
+                                       Foreground="{StaticResource basicFontColor}"
+                                       Grid.Column="2"
+                                       Margin="8,0,0,0"
+                                       />
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
         </ListView>
 
         <StatusBar Grid.Row="3"
