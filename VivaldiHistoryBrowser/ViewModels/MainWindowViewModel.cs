@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System.Collections.Generic;
 using VivaldiHistoryBrowser.Models;
 
 namespace VivaldiHistoryBrowser.ViewModels
@@ -12,11 +13,17 @@ namespace VivaldiHistoryBrowser.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainWindowViewModel()
-        {
+        private List<WebPage> webPages = new List<WebPage>();
 
+        public MainWindowViewModel() {
+            WebPages = DatabaseHelper.getHistory();
         }
 
         public DBHelper DatabaseHelper { get; private set; } = new DBHelper();
+
+        public List<WebPage> WebPages { 
+            get => webPages;
+            set => SetProperty(ref webPages, value); 
+        }
     }
 }

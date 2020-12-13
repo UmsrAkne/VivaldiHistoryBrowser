@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace VivaldiHistoryBrowser.Models.Tests {
     [TestClass()]
-    public class SQLiteExecuterTests {
+    public class DBHelperTests {
         [TestMethod()]
-        public void selectTest() {
-            var s = new SQLiteExecuter();
-            var list = s.select("select * from visits limit 10;");
+        public void getHistoryInNewOrderTest() {
+            var dbHelper = new DBHelper();
+            dbHelper.getHistory();
         }
     }
 }
