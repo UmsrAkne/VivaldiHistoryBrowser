@@ -15,8 +15,8 @@ namespace VivaldiHistoryBrowser.ViewModels
 
         private List<WebPage> webPages = new List<WebPage>();
 
-        public MainWindowViewModel()
-        {
+        public MainWindowViewModel() {
+            WebPages = DatabaseHelper.getHistory();
         }
 
         public DBHelper DatabaseHelper { get; private set; } = new DBHelper();
