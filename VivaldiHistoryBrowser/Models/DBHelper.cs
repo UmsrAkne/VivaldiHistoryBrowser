@@ -26,12 +26,12 @@ namespace VivaldiHistoryBrowser.Models {
             hashs.ForEach(h => {
                 var p = new WebPage() {
                     PageTitle = (String)h["title"],
-                    URL = (String)h["url["],
+                    URL = (String)h["url"],
                 };
 
                 long microSecVisiTime = (long)h["visit_time"];
                 var elapsedTicks = new TimeSpan(microSecVisiTime * 10);
-                p.visitDateTime = startDateTime + elapsedTicks;
+                p.VisitDateTime = startDateTime + elapsedTicks;
 
                 pages.Add(p);
             });
