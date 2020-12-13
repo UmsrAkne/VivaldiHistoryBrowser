@@ -60,12 +60,12 @@
                             >
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="400"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding VisitDateTime}"
+                            <TextBlock Text="{Binding VisitDateTimeShortString}"
                                        Foreground="{StaticResource basicFontColor}"
                                        Grid.Column="0"
                                        />

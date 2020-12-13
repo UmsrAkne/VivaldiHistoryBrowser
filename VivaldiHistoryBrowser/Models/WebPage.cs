@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace VivaldiHistoryBrowser.Models {
     public class WebPage {
         public DateTime VisitDateTime { get; set; } = new DateTime();
+
+        public String VisitDateTimeShortString => VisitDateTime.ToString("yyyy/MM/dd HH:mm:ss");
+
         public String PageTitle { get; set; } = "";
 
         // System.Uri 型でもいいかと思ったけど、URLを使用して何か高度なことを行うわけではなく、
