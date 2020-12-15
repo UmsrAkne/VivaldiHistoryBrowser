@@ -16,5 +16,7 @@ namespace VivaldiHistoryBrowser.Models {
         // 今のところは文字列でURLが確認できれば充分なので、String 型で作成する。
         public String URL { get; set; } = "";
 
+        public long VisitCount { get; set; } = 0;
+
     }
 }
