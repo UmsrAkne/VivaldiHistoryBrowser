@@ -14,7 +14,7 @@ namespace VivaldiHistoryBrowser.Models {
 
         public List<WebPage> getHistory() {
             var hashs = Executer.select(
-                "SELECT vt.url, vt.visit_time, ut.url, ut.title " +
+                "SELECT vt.url, vt.visit_time, ut.url, ut.title, ut.visit_count " +
                 "FROM visits as vt inner join urls as ut " +
                 "on vt.url = ut.id " +
                 "WHERE 1=1 " +
@@ -33,6 +33,7 @@ namespace VivaldiHistoryBrowser.Models {
                 var p = new WebPage() {
                     PageTitle = (String)h["title"],
                     URL = (String)h["url"],
+                    VisitCount = (long)h["visit_count"]
                 };
 
                 long microSecVisiTime = (long)h["visit_time"];

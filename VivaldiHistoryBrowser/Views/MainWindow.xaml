@@ -61,6 +61,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
+                                <ColumnDefinition  Width="30"/>
                                 <ColumnDefinition Width="400"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
@@ -70,14 +71,21 @@
                                        Grid.Column="0"
                                        />
 
-                            <TextBlock Text="{Binding PageTitle}"
+                            <TextBlock Text="{Binding VisitCount}"
                                        Foreground="{StaticResource basicFontColor}"
                                        Grid.Column="1"
+                                       Margin="4,0,4,0"
+                                       />
+
+
+                            <TextBlock Text="{Binding PageTitle}"
+                                       Foreground="{StaticResource basicFontColor}"
+                                       Grid.Column="2"
                                        />
 
                             <TextBlock Text="{Binding URL}"
                                        Foreground="{StaticResource basicFontColor}"
-                                       Grid.Column="2"
+                                       Grid.Column="3"
                                        Margin="8,0,0,0"
                                        />
 
