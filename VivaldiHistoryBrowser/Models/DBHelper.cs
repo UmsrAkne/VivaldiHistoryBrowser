@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 namespace VivaldiHistoryBrowser.Models {
     public class DBHelper {
 
-        SQLiteExecuter Executer { get; } = new SQLiteExecuter();
+        public DateTime SearchStartDateTime { get; set; } = new DateTime(1601, 1, 1).AddHours(9);
+        public DateTime SearchEndDateTime { get; set; } = DateTime.Now;
+
+        private SQLiteExecuter Executer { get; } = new SQLiteExecuter();
 
         public List<WebPage> getHistory() {
             var hashs = Executer.select(
                 "SELECT vt.url, vt.visit_time, ut.url, ut.title " +
                 "FROM visits as vt inner join urls as ut " +
                 "on vt.url = ut.id " +
+                "WHERE 1=1 " +
+                $"AND vt.visit_time > {toChromeHistoryDateTimeNumber(SearchStartDateTime)} " +
+                $"AND vt.visit_time < {toChromeHistoryDateTimeNumber(SearchEndDateTime)} " +
                 "LIMIT 200;"
                 );
 
