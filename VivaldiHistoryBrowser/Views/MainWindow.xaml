@@ -58,6 +58,8 @@
                         </Setter.Value>
                     </Setter>
 
+                    <Setter Property="Command" Value="{Binding MoveDateCommand}"/>
+
                 </Style>
             </StackPanel.Resources>
                 
@@ -70,31 +72,38 @@
                      />
 
             <Button Content="-1m"
+                    CommandParameter="-30"
                     Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
                     />
 
             <Button Content="-1w"
+                    CommandParameter="-7"
                     Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
                     />
 
             <Button Content="-1d"
+                    CommandParameter="-1"
                     Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
                     />
 
-            <TextBlock Text="日時を表示"
+            <TextBlock Text="{Binding CurrentDateString}"
                      Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                      Foreground="{StaticResource ResourceKey=basicFontColor}"
+                     Margin="4,0"
                      />
 
             <Button Content="+1d"
+                    CommandParameter="1"
                     Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
                     />
 
             <Button Content="+1w"
+                    CommandParameter="7"
                     Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
                     />
 
             <Button Content="+1m"
+                    CommandParameter="30"
                     Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
                     />
 
