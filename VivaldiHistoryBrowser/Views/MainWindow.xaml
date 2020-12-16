@@ -37,6 +37,32 @@
                     Grid.Row="1"
                     Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                     >
+            <StackPanel.Resources>
+                <Style x:Key="StackpanelButtonStyle" TargetType="Button">
+                    <Setter Property="Background" Value="{StaticResource ResourceKey=basicUIBackgroundColor}"/>
+                    <Setter Property="Foreground" Value="{StaticResource ResourceKey=basicFontColor}"/>
+                    <Setter Property="Margin" Value="3,0"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderBrush="DarkGray"
+                                        BorderThickness="1"
+                                        >
+
+                                    <TextBlock Text="{TemplateBinding Content}"
+                                               Padding="3,0"
+                                               />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="Command" Value="{Binding MoveDateCommand}"/>
+
+                </Style>
+            </StackPanel.Resources>
+                
 
             <TextBox Text="textBlock"
                      Width="150"
@@ -44,6 +70,42 @@
                      Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                      Margin="0,4,0,0"
                      />
+
+            <Button Content="-1m"
+                    CommandParameter="-30"
+                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    />
+
+            <Button Content="-1w"
+                    CommandParameter="-7"
+                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    />
+
+            <Button Content="-1d"
+                    CommandParameter="-1"
+                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    />
+
+            <TextBlock Text="{Binding CurrentDateString}"
+                     Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
+                     Foreground="{StaticResource ResourceKey=basicFontColor}"
+                     Margin="4,0"
+                     />
+
+            <Button Content="+1d"
+                    CommandParameter="1"
+                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    />
+
+            <Button Content="+1w"
+                    CommandParameter="7"
+                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    />
+
+            <Button Content="+1m"
+                    CommandParameter="30"
+                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    />
 
         </StackPanel>
 
