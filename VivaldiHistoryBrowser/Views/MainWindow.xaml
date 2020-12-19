@@ -113,6 +113,7 @@
                   Grid.Row="2"
                   Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                   BorderThickness="0,1"
+                  SelectedItem="{Binding SelectedItem}"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -169,7 +170,7 @@
         <StatusBar Grid.Row="3"
                    Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                    >
-            <TextBlock Text="ステータスバー"
+            <TextBlock Text="{Binding StatusBarText}"
                        Foreground="White"
                        />
         </StatusBar>
