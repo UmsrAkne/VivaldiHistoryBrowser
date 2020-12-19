@@ -169,7 +169,7 @@
         <StatusBar Grid.Row="3"
                    Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                    >
-            <TextBlock Text="ステータスバー"
+            <TextBlock Text="{Binding StatusBarText}"
                        Foreground="White"
                        />
         </StatusBar>
