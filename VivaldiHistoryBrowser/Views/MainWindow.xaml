@@ -113,6 +113,7 @@
                   Grid.Row="2"
                   Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                   BorderThickness="0,1"
+                  SelectedItem="{Binding SelectedItem}"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate>
