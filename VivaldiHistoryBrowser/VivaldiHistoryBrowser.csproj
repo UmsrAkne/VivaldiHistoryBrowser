@@ -84,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DBHelper.cs" />
+    <Compile Include="Models\HistoryFileGetter.cs" />
     <Compile Include="Models\SQLiteExecuter.cs" />
     <Compile Include="Models\WebPage.cs" />
     <Compile Include="ViewModels\ConfirmationDialogViewModel.cs" />
