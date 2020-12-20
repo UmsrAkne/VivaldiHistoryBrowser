@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VivaldiHistoryBrowser.Models;
 
 namespace VivaldiHistoryBrowser.ViewModels {
     class ConfirmationDialogViewModel : BindableBase, IDialogAware {
@@ -13,8 +14,16 @@ namespace VivaldiHistoryBrowser.ViewModels {
 
         public event Action<IDialogResult> RequestClose;
 
+        private String confirmationText;
         private DelegateCommand yesCommand;
         private DelegateCommand cancelCommand;
+
+        public ConfirmationDialogViewModel() {
+            confirmationText = $"{HistoryFileGetter.HistoryFilePath()} \n" +
+                "上記から履歴ファイルを取得して複製します\n" +
+                "既に履歴ファイルが存在していた場合、古いファイルに上書きします。\n" +
+                "取得、複製を実行してもよろしいですか？\n";
+        }
 
         public DelegateCommand YesCommand{
             get => yesCommand ?? (yesCommand = new DelegateCommand(() => {
@@ -26,6 +35,10 @@ namespace VivaldiHistoryBrowser.ViewModels {
             get => cancelCommand ?? (cancelCommand = new DelegateCommand(() => {
                 this.RequestClose?.Invoke(new DialogResult(ButtonResult.No));
             }));
+        }
+
+        public String ConfirmationText {
+            get => confirmationText;
         }
 
         public bool CanCloseDialog() => true;

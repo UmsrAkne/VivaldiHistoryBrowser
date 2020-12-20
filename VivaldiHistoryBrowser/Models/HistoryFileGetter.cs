@@ -14,5 +14,9 @@ namespace VivaldiHistoryBrowser.Models {
             System.Diagnostics.Debug.WriteLine(File.Exists($@"C:\Users\{Environment.UserName}\AppData\Local\Vivaldi\User Data\Default\History"));
             return $@"C:\Users\{Environment.UserName}\AppData\Local\Vivaldi\User Data\Default\History";
         }
+
+        public static void CopyHistoryFile() {
+            File.Copy(HistoryFilePath(), @"History", true);
+        }
     }
 }

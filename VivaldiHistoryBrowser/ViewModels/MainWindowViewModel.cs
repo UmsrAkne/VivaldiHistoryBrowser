@@ -70,19 +70,17 @@ namespace VivaldiHistoryBrowser.ViewModels
             }));
         }
 
-
         public DelegateCommand ShowConfirmationDialogCommand {
             get => showConfirmationDialogCommand ?? (showConfirmationDialogCommand = new DelegateCommand(() => {
                 dialogService.ShowDialog(nameof(ConfirmationDialog), new DialogParameters(),
                     (IDialogResult result) => {
                         if(result?.Result == ButtonResult.Yes) {
-                            System.Diagnostics.Debug.WriteLine(result);
+                            HistoryFileGetter.CopyHistoryFile();
                         }
                     }
                 );
             }));
         }
-
 
         private void reloadList() {
             DatabaseHelper.SearchStartDateTime = currentDate;
