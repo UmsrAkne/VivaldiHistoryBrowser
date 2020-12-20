@@ -30,7 +30,14 @@
 
             <MenuItem Header="ファイル"
                       Foreground="White"
-                      />
+                      >
+
+                <MenuItem Header="履歴を取得する"
+                          Command="{Binding ShowConfirmationDialogCommand}"
+                          Foreground="Black"
+                          />
+
+            </MenuItem>
         </Menu>
 
         <StackPanel Orientation="Horizontal"
