@@ -2,6 +2,7 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
+using VivaldiHistoryBrowser.ViewModels;
 
 namespace VivaldiHistoryBrowser
 {
@@ -17,6 +18,7 @@ namespace VivaldiHistoryBrowser
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDialog<ConfirmationDialog, ConfirmationDialogViewModel>();
 
         }
     }

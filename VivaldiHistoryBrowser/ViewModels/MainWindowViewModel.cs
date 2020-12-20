@@ -1,8 +1,10 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using VivaldiHistoryBrowser.Models;
+using VivaldiHistoryBrowser.Views;
 
 namespace VivaldiHistoryBrowser.ViewModels
 {
@@ -20,8 +22,11 @@ namespace VivaldiHistoryBrowser.ViewModels
         private String statusBarText = "";
         private WebPage selectedItem;
         private DelegateCommand<object> moveDateCommand;
+        private DelegateCommand showConfirmationDialogCommand;
+        private IDialogService dialogService;
 
-        public MainWindowViewModel() {
+        public MainWindowViewModel(IDialogService dialogService) {
+            this.dialogService = dialogService;
             DatabaseHelper.SearchStartDateTime = currentDate;
             DatabaseHelper.SearchEndDateTime = currentDate.AddDays(1);
 
@@ -62,6 +67,18 @@ namespace VivaldiHistoryBrowser.ViewModels
                 reloadList();
 
                 RaisePropertyChanged(nameof(CurrentDateString));
+            }));
+        }
+
+        public DelegateCommand ShowConfirmationDialogCommand {
+            get => showConfirmationDialogCommand ?? (showConfirmationDialogCommand = new DelegateCommand(() => {
+                dialogService.ShowDialog(nameof(ConfirmationDialog), new DialogParameters(),
+                    (IDialogResult result) => {
+                        if(result?.Result == ButtonResult.Yes) {
+                            HistoryFileGetter.CopyHistoryFile();
+                        }
+                    }
+                );
             }));
         }
 
