@@ -14,10 +14,20 @@ namespace VivaldiHistoryBrowser.Models {
         /// 履歴の検索時、日時を条件に含めて検索するかどうかを設定します。
         /// </summary>
         public Boolean DateTimeSearch { get; set; } = true;
+        public String SearchWord { get; set; } = "";
 
         private SQLiteExecuter Executer { get; } = new SQLiteExecuter();
 
         public List<WebPage> getHistory() {
+
+            String textConditionalSentence = "";
+            if (String.IsNullOrEmpty(SearchWord)) {
+                DateTimeSearch = true;
+            }
+            else {
+                DateTimeSearch = false;
+                textConditionalSentence = $"AND ut.title LIKE '%{SearchWord}%'";
+            }
 
             String dateTimeConditionalSentence = "";
             if (DateTimeSearch) {
@@ -32,6 +42,7 @@ namespace VivaldiHistoryBrowser.Models {
                 "on vt.url = ut.id " +
                 "WHERE 1=1 " +
                 dateTimeConditionalSentence + 
+                textConditionalSentence + 
                 "LIMIT 200;"
                 );
 

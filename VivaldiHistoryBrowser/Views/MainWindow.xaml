@@ -71,7 +71,8 @@
             </StackPanel.Resources>
                 
 
-            <TextBox Text="textBlock"
+            <TextBox Text="{Binding DatabaseHelper.SearchWord, UpdateSourceTrigger=PropertyChanged}"
+                     Name="searchTextBox"
                      Width="150"
                      Foreground="White"
                      Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
