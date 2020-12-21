@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace VivaldiHistoryBrowser.Models {
-    public class DBHelper {
+    public class DBHelper :BindableBase{
+
+        private String searchWord = "";
 
         public DateTime SearchStartDateTime { get; set; } = new DateTime(1601, 1, 1).AddHours(9);
         public DateTime SearchEndDateTime { get; set; } = DateTime.Now;
@@ -14,7 +17,10 @@ namespace VivaldiHistoryBrowser.Models {
         /// 履歴の検索時、日時を条件に含めて検索するかどうかを設定します。
         /// </summary>
         public Boolean DateTimeSearch { get; set; } = true;
-        public String SearchWord { get; set; } = "";
+        public String SearchWord {
+            get => searchWord;
+            set => SetProperty(ref searchWord, value);
+        }
 
         private SQLiteExecuter Executer { get; } = new SQLiteExecuter();
 

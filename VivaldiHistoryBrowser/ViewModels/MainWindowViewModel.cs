@@ -65,6 +65,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         public DelegateCommand<object> MoveDateCommand {
             get => moveDateCommand ?? (moveDateCommand = new DelegateCommand<object>((daysCount) => {
                 currentDate = currentDate.AddDays((int.Parse((String)daysCount)));
+                DatabaseHelper.SearchWord = "";
                 reloadList();
 
                 RaisePropertyChanged(nameof(CurrentDateString));
