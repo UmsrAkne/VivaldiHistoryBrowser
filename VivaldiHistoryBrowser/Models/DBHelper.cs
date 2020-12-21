@@ -10,16 +10,28 @@ namespace VivaldiHistoryBrowser.Models {
         public DateTime SearchStartDateTime { get; set; } = new DateTime(1601, 1, 1).AddHours(9);
         public DateTime SearchEndDateTime { get; set; } = DateTime.Now;
 
+        /// <summary>
+        /// 履歴の検索時、日時を条件に含めて検索するかどうかを設定します。
+        /// </summary>
+        public Boolean DateTimeSearch { get; set; } = true;
+
         private SQLiteExecuter Executer { get; } = new SQLiteExecuter();
 
         public List<WebPage> getHistory() {
+
+            String dateTimeConditionalSentence = "";
+            if (DateTimeSearch) {
+                dateTimeConditionalSentence = 
+                $"AND vt.visit_time > {toChromeHistoryDateTimeNumber(SearchStartDateTime)} " +
+                $"AND vt.visit_time < {toChromeHistoryDateTimeNumber(SearchEndDateTime)} ";
+            }
+
             var hashs = Executer.select(
                 "SELECT vt.url, vt.visit_time, ut.url, ut.title, ut.visit_count " +
                 "FROM visits as vt inner join urls as ut " +
                 "on vt.url = ut.id " +
                 "WHERE 1=1 " +
-                $"AND vt.visit_time > {toChromeHistoryDateTimeNumber(SearchStartDateTime)} " +
-                $"AND vt.visit_time < {toChromeHistoryDateTimeNumber(SearchEndDateTime)} " +
+                dateTimeConditionalSentence + 
                 "LIMIT 200;"
                 );
 
