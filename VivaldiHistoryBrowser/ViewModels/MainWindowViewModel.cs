@@ -23,6 +23,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         private WebPage selectedItem;
         private DelegateCommand<object> moveDateCommand;
         private DelegateCommand showConfirmationDialogCommand;
+        private DelegateCommand pageTitleSearchCommand;
         private IDialogService dialogService;
 
         public MainWindowViewModel(IDialogService dialogService) {
@@ -79,6 +80,13 @@ namespace VivaldiHistoryBrowser.ViewModels
                         }
                     }
                 );
+            }));
+        }
+
+
+        public DelegateCommand PageTitleSearchCommand {
+            get => pageTitleSearchCommand ?? (pageTitleSearchCommand = new DelegateCommand(() => {
+                reloadList();
             }));
         }
 
