@@ -32,7 +32,9 @@ namespace VivaldiHistoryBrowser.Models {
             }
             else {
                 DateTimeSearch = false;
-                textConditionalSentence = $"AND ut.title LIKE '%{SearchWord}%'";
+                textConditionalSentence = $"AND( " +
+                                          $"ut.title LIKE '%{SearchWord}%' OR ut.url LIKE '%{SearchWord}%'" +
+                                          $")";
             }
 
             String dateTimeConditionalSentence = "";
