@@ -23,6 +23,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         private WebPage selectedItem;
         private DelegateCommand<object> moveDateCommand;
         private DelegateCommand showConfirmationDialogCommand;
+        private DelegateCommand pageTitleSearchCommand;
         private IDialogService dialogService;
 
         public MainWindowViewModel(IDialogService dialogService) {
@@ -64,6 +65,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         public DelegateCommand<object> MoveDateCommand {
             get => moveDateCommand ?? (moveDateCommand = new DelegateCommand<object>((daysCount) => {
                 currentDate = currentDate.AddDays((int.Parse((String)daysCount)));
+                DatabaseHelper.SearchWord = "";
                 reloadList();
 
                 RaisePropertyChanged(nameof(CurrentDateString));
@@ -79,6 +81,13 @@ namespace VivaldiHistoryBrowser.ViewModels
                         }
                     }
                 );
+            }));
+        }
+
+
+        public DelegateCommand PageTitleSearchCommand {
+            get => pageTitleSearchCommand ?? (pageTitleSearchCommand = new DelegateCommand(() => {
+                reloadList();
             }));
         }
 

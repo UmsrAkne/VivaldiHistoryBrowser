@@ -1,25 +1,56 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace VivaldiHistoryBrowser.Models {
-    public class DBHelper {
+    public class DBHelper :BindableBase{
+
+        private String searchWord = "";
 
         public DateTime SearchStartDateTime { get; set; } = new DateTime(1601, 1, 1).AddHours(9);
         public DateTime SearchEndDateTime { get; set; } = DateTime.Now;
 
+        /// <summary>
+        /// 履歴の検索時、日時を条件に含めて検索するかどうかを設定します。
+        /// </summary>
+        public Boolean DateTimeSearch { get; set; } = true;
+        public String SearchWord {
+            get => searchWord;
+            set => SetProperty(ref searchWord, value);
+        }
+
         private SQLiteExecuter Executer { get; } = new SQLiteExecuter();
 
         public List<WebPage> getHistory() {
+
+            String textConditionalSentence = "";
+            if (String.IsNullOrEmpty(SearchWord)) {
+                DateTimeSearch = true;
+            }
+            else {
+                DateTimeSearch = false;
+                textConditionalSentence = $"AND( " +
+                                          $"ut.title LIKE '%{SearchWord}%' OR ut.url LIKE '%{SearchWord}%'" +
+                                          $")";
+            }
+
+            String dateTimeConditionalSentence = "";
+            if (DateTimeSearch) {
+                dateTimeConditionalSentence = 
+                $"AND vt.visit_time > {toChromeHistoryDateTimeNumber(SearchStartDateTime)} " +
+                $"AND vt.visit_time < {toChromeHistoryDateTimeNumber(SearchEndDateTime)} ";
+            }
+
             var hashs = Executer.select(
                 "SELECT vt.url, vt.visit_time, ut.url, ut.title, ut.visit_count " +
                 "FROM visits as vt inner join urls as ut " +
                 "on vt.url = ut.id " +
                 "WHERE 1=1 " +
-                $"AND vt.visit_time > {toChromeHistoryDateTimeNumber(SearchStartDateTime)} " +
-                $"AND vt.visit_time < {toChromeHistoryDateTimeNumber(SearchEndDateTime)} " +
+                dateTimeConditionalSentence + 
+                textConditionalSentence + 
                 "LIMIT 200;"
                 );
 

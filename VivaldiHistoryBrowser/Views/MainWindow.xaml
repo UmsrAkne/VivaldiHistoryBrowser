@@ -69,14 +69,20 @@
 
                 </Style>
             </StackPanel.Resources>
-                
 
-            <TextBox Text="textBlock"
+
+            <TextBox Text="{Binding DatabaseHelper.SearchWord, UpdateSourceTrigger=PropertyChanged}"
+                     Name="searchTextBox"
                      Width="150"
                      Foreground="White"
                      Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                      Margin="0,4,0,0"
-                     />
+                     >
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding PageTitleSearchCommand}"/>
+                </TextBox.InputBindings>
+
+            </TextBox>
 
             <Button Content="-1m"
                     CommandParameter="-30"
