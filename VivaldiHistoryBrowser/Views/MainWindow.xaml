@@ -50,26 +50,12 @@
                     Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                     >
             <StackPanel.Resources>
-                <Style x:Key="StackpanelButtonStyle" TargetType="Button">
-                    <Setter Property="Background" Value="{StaticResource ResourceKey=basicUIBackgroundColor}"/>
-                    <Setter Property="Foreground" Value="{StaticResource ResourceKey=basicFontColor}"/>
+                <Style x:Key="StackpanelButtonStyle" 
+                       TargetType="{x:Type Button}"
+                       BasedOn="{StaticResource {x:Type Button}}"
+                       >
+
                     <Setter Property="Margin" Value="3,0"/>
-
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border BorderBrush="DarkGray"
-                                        BorderThickness="1"
-                                        >
-
-                                    <TextBlock Text="{TemplateBinding Content}"
-                                               Padding="3,0"
-                                               />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-
                     <Setter Property="Command" Value="{Binding MoveDateCommand}"/>
 
                 </Style>
@@ -91,17 +77,18 @@
 
             <Button Content="-1m"
                     CommandParameter="-30"
-                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    OverridesDefaultStyle="True"
+                    Style="{StaticResource StackpanelButtonStyle }"
                     />
 
             <Button Content="-1w"
                     CommandParameter="-7"
-                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    Style="{StaticResource StackpanelButtonStyle }"
                     />
 
             <Button Content="-1d"
                     CommandParameter="-1"
-                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    Style="{StaticResource StackpanelButtonStyle }"
                     />
 
             <TextBlock Text="{Binding CurrentDateString}"
@@ -112,17 +99,17 @@
 
             <Button Content="+1d"
                     CommandParameter="1"
-                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    Style="{StaticResource StackpanelButtonStyle }"
                     />
 
             <Button Content="+1w"
                     CommandParameter="7"
-                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    Style="{StaticResource StackpanelButtonStyle }"
                     />
 
             <Button Content="+1m"
                     CommandParameter="30"
-                    Style="{StaticResource ResourceKey=StackpanelButtonStyle}"
+                    Style="{StaticResource StackpanelButtonStyle }"
                     />
 
         </StackPanel>
