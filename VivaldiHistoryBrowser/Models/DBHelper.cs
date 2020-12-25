@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,13 @@ namespace VivaldiHistoryBrowser.Models {
             }
             else {
                 DateTimeSearch = false;
-                textConditionalSentence = $"AND( " +
-                                          $"ut.title LIKE '%{SearchWord}%' OR ut.url LIKE '%{SearchWord}%'" +
-                                          $")";
+
+                // 半角スペースで文字列を区切ってその回数だけループでクエリを追加する。
+                ReadOnlyCollection<String> searchWords = new ReadOnlyCollection<String>(SearchWord.Split(' '));
+
+                for(var i = 0; i < searchWords.Count; i++) {
+                    textConditionalSentence += $"AND (ut.title LIKE '%{searchWords[i]}%' OR ut.url LIKE '%{searchWords[i]}%' )";
+                }
             }
 
             String dateTimeConditionalSentence = "";
