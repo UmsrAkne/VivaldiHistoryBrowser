@@ -7,12 +7,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VivaldiHistoryBrowser.Models {
+
+    /// <summary>
+    /// 並び替えの基準となる列を表す列挙型。
+    /// </summary>
+    public enum OrderByColumn {
+        Date,
+        VisitConut,
+        URL,
+        PageTitle
+    }
+
     public class DBHelper :BindableBase{
 
         private String searchWord = "";
 
         public DateTime SearchStartDateTime { get; set; } = new DateTime(1601, 1, 1).AddHours(9);
         public DateTime SearchEndDateTime { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// ソートの基準となる列を示すプロパティ。デフォルトでは日時を基準に並び替えを行う
+        /// </summary>
+        public OrderByColumn OrderByColumn { get; set; } = OrderByColumn.Date;
 
         /// <summary>
         /// 履歴の検索時、日時を条件に含めて検索するかどうかを設定します。
@@ -54,8 +70,9 @@ namespace VivaldiHistoryBrowser.Models {
                 "FROM visits as vt inner join urls as ut " +
                 "on vt.url = ut.id " +
                 "WHERE 1=1 " +
-                dateTimeConditionalSentence + 
-                textConditionalSentence + 
+                dateTimeConditionalSentence +
+                textConditionalSentence +
+                $"ORDER BY {toColumnName(OrderByColumn)} " +
                 "LIMIT 200;"
                 );
 
@@ -96,6 +113,27 @@ namespace VivaldiHistoryBrowser.Models {
             }
 
             return elapsedTimeSpan.Ticks / 10;
+        }
+
+        private String toColumnName(OrderByColumn columnName) {
+            switch (columnName) {
+                case OrderByColumn.Date : 
+                    return "vt.visit_time";
+
+                case OrderByColumn.PageTitle:
+                    return "ut.title";
+
+                case OrderByColumn.URL:
+                    return "ut.url";
+
+                case OrderByColumn.VisitConut:
+                    return "ut.visit_count";
+
+            }
+
+            // enum側を変更した場合、こちらの変更忘れを防止するための一文。
+            // 両方一緒に変更していればこの行に到達しない。
+            throw new ArgumentException("不正な引数。");
         }
     }
 }
