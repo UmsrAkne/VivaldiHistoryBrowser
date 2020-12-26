@@ -41,6 +41,27 @@
                           Command="{Binding ShowConfirmationDialogCommand}"
                           Foreground="Black"
                           />
+            </MenuItem>
+
+            <MenuItem Header="ソート"
+                      Foreground="White"
+                      >
+
+                <MenuItem Header="訪問日時でソート"
+                          Foreground="Black"
+                          />
+
+                <MenuItem Header="訪問回数でソート"
+                          Foreground="Black"
+                          />
+
+                <MenuItem Header="URLでソート"
+                          Foreground="Black"
+                          />
+
+                <MenuItem Header="ページタイトルでソート"
+                          Foreground="Black"
+                          />
 
             </MenuItem>
         </Menu>
