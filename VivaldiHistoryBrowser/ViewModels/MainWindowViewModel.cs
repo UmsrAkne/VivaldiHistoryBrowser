@@ -24,6 +24,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         private DelegateCommand<object> moveDateCommand;
         private DelegateCommand showConfirmationDialogCommand;
         private DelegateCommand pageTitleSearchCommand;
+        private DelegateCommand<String> setOrderByColumnNameCommand;
         private IDialogService dialogService;
 
         public MainWindowViewModel(IDialogService dialogService) {
@@ -84,9 +85,16 @@ namespace VivaldiHistoryBrowser.ViewModels
             }));
         }
 
-
         public DelegateCommand PageTitleSearchCommand {
             get => pageTitleSearchCommand ?? (pageTitleSearchCommand = new DelegateCommand(() => {
+                reloadList();
+            }));
+        }
+
+        public DelegateCommand<String> SetOrderByColumnNameCommand{
+            get => setOrderByColumnNameCommand ?? (setOrderByColumnNameCommand = new DelegateCommand<String>((colName) => {
+                Enum.TryParse(colName, out OrderByColumn c);
+                DatabaseHelper.OrderByColumn = c;
                 reloadList();
             }));
         }
