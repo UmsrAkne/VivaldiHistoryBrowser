@@ -13,7 +13,7 @@ namespace VivaldiHistoryBrowser.Models {
     /// </summary>
     public enum OrderByColumn {
         Date,
-        VisitConut,
+        VisitCount,
         URL,
         PageTitle
     }
@@ -126,7 +126,7 @@ namespace VivaldiHistoryBrowser.Models {
                 case OrderByColumn.URL:
                     return "ut.url";
 
-                case OrderByColumn.VisitConut:
+                case OrderByColumn.VisitCount:
                     return "ut.visit_count";
 
             }

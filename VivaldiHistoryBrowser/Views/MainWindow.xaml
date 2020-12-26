@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:m="clr-namespace:VivaldiHistoryBrowser.Models"
         Title="{Binding Title}" Height="600" Width="1024">
-
-    
 
     <Window.Resources>
         <ResourceDictionary>
@@ -46,21 +45,33 @@
             <MenuItem Header="ソート"
                       Foreground="White"
                       >
+                <MenuItem.Resources>
+                    <Style x:Key="SortMenuChildStyle" TargetType="MenuItem">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Command" Value="{Binding SetOrderByColumnNameCommand}"/>
+                    </Style>
+                </MenuItem.Resources>
+
+                <!-- CommandParameter に入っている文字列は列挙子の名前 -->
 
                 <MenuItem Header="訪問日時でソート"
-                          Foreground="Black"
+                          CommandParameter="Date"
+                          Style="{StaticResource SortMenuChildStyle}"
                           />
 
                 <MenuItem Header="訪問回数でソート"
-                          Foreground="Black"
+                          CommandParameter="VisitCount"
+                          Style="{StaticResource SortMenuChildStyle}"
                           />
 
                 <MenuItem Header="URLでソート"
-                          Foreground="Black"
+                          CommandParameter="URL"
+                          Style="{StaticResource SortMenuChildStyle}"
                           />
 
                 <MenuItem Header="ページタイトルでソート"
-                          Foreground="Black"
+                          CommandParameter="PageTitle"
+                          Style="{StaticResource SortMenuChildStyle}"
                           />
 
             </MenuItem>
