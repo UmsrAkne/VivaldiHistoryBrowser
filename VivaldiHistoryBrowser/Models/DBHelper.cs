@@ -73,7 +73,7 @@ namespace VivaldiHistoryBrowser.Models {
                 dateTimeConditionalSentence +
                 textConditionalSentence +
                 $"ORDER BY {toColumnName(OrderByColumn)} " +
-                "LIMIT 200;"
+                "LIMIT 500;"
                 );
 
             var pages = new List<WebPage>();
