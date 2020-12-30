@@ -25,6 +25,7 @@ namespace VivaldiHistoryBrowser.ViewModels
         private DelegateCommand showConfirmationDialogCommand;
         private DelegateCommand pageTitleSearchCommand;
         private DelegateCommand<String> setOrderByColumnNameCommand;
+        private DelegateCommand openInBroserCommand;
         private IDialogService dialogService;
 
         public MainWindowViewModel(IDialogService dialogService) {
@@ -96,6 +97,15 @@ namespace VivaldiHistoryBrowser.ViewModels
                 Enum.TryParse(colName, out OrderByColumn c);
                 DatabaseHelper.OrderByColumn = c;
                 reloadList();
+            }));
+        }
+
+
+        public DelegateCommand OpenInBrowserCommand {
+            get => openInBroserCommand ?? (openInBroserCommand = new DelegateCommand(() => {
+                if(selectedItem != null) {
+                    System.Diagnostics.Process.Start(SelectedItem.URL);
+                }
             }));
         }
 
