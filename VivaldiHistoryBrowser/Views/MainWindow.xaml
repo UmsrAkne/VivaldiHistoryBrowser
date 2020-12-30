@@ -151,6 +151,7 @@
                   Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
                   BorderThickness="0,1"
                   SelectedItem="{Binding SelectedItem}"
+                  x:Name="mainListView"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -158,6 +159,14 @@
                             BorderThickness="0,0,0,0.5"
                             Padding="0,0,0,3"
                             >
+
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick"
+                                          Command="{Binding ElementName=mainListView, Path=DataContext.OpenInBrowserCommand}"
+                                          >
+                            </MouseBinding>
+                        </Border.InputBindings>
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
