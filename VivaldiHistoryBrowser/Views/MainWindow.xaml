@@ -107,6 +107,17 @@
 
             </TextBox>
 
+            <TextBlock Text="指定日時検索で検索する"
+                       Foreground="{StaticResource basicFontColor}"
+                       VerticalAlignment="Center"
+                       />
+
+            <CheckBox VerticalAlignment="Center"
+                      Margin="4,0,12,0"
+                      Background="LightGray"
+                      IsChecked="{Binding DatabaseHelper.DateTimeSearch}"
+                      />
+
             <Button Content="-1m"
                     CommandParameter="-30"
                     OverridesDefaultStyle="True"
@@ -143,16 +154,6 @@
                     CommandParameter="30"
                     Style="{StaticResource StackpanelButtonStyle }"
                     />
-
-            <TextBlock Text="現在の日付内でテキスト検索 : "
-                       Foreground="{StaticResource basicFontColor}"
-                       Margin="20,0,0,0"
-                       VerticalAlignment="Center"
-                       />
-
-            <TextBox Width="200"
-                     Background="{StaticResource basicUIBackgroundColor}"
-                     />
 
         </StackPanel>
 

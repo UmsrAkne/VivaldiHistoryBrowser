@@ -44,12 +44,8 @@ namespace VivaldiHistoryBrowser.Models {
         public List<WebPage> getHistory() {
 
             String textConditionalSentence = "";
-            if (String.IsNullOrEmpty(SearchWord)) {
-                DateTimeSearch = true;
-            }
-            else {
-                DateTimeSearch = false;
 
+            if (!String.IsNullOrEmpty(SearchWord)) {
                 // 半角スペースで文字列を区切ってその回数だけループでクエリを追加する。
                 ReadOnlyCollection<String> searchWords = new ReadOnlyCollection<String>(SearchWord.Split(' '));
 
