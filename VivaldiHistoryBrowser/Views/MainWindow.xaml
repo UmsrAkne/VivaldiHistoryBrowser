@@ -76,7 +76,7 @@
 
             </MenuItem>
         </Menu>
-
+        
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
@@ -144,7 +144,18 @@
                     Style="{StaticResource StackpanelButtonStyle }"
                     />
 
+            <TextBlock Text="現在の日付内でテキスト検索 : "
+                       Foreground="{StaticResource basicFontColor}"
+                       Margin="20,0,0,0"
+                       VerticalAlignment="Center"
+                       />
+
+            <TextBox Width="200"
+                     Background="{StaticResource basicUIBackgroundColor}"
+                     />
+
         </StackPanel>
+
 
         <ListView ItemsSource="{Binding WebPages}"
                   Grid.Row="2"
