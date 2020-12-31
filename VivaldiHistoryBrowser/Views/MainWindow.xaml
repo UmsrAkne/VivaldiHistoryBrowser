@@ -76,7 +76,7 @@
 
             </MenuItem>
         </Menu>
-
+        
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     Background="{StaticResource ResourceKey=basicUIBackgroundColor}"
@@ -106,6 +106,17 @@
                 </TextBox.InputBindings>
 
             </TextBox>
+
+            <TextBlock Text="指定日時検索で検索する"
+                       Foreground="{StaticResource basicFontColor}"
+                       VerticalAlignment="Center"
+                       />
+
+            <CheckBox VerticalAlignment="Center"
+                      Margin="4,0,12,0"
+                      Background="LightGray"
+                      IsChecked="{Binding DatabaseHelper.DateTimeSearch}"
+                      />
 
             <Button Content="-1m"
                     CommandParameter="-30"
@@ -145,6 +156,7 @@
                     />
 
         </StackPanel>
+
 
         <ListView ItemsSource="{Binding WebPages}"
                   Grid.Row="2"
